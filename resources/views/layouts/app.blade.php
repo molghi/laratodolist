@@ -22,5 +22,8 @@
 
     <!-- INCLUDE FOOTER -->
     @include('partials.footer')
+
+    {{-- JS: show now time --}}
+    @include('partials.js_show_now_time')
 </body>
 </html>

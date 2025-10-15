@@ -96,9 +96,6 @@ class PageController extends Controller
 
     // ========================================================================
 
-    // Show forms to log in or sign up
-    public function show_auth_forms () {
-        return view('auth');
-    }
+    
 
 }

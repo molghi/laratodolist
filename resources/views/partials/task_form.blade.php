@@ -71,7 +71,16 @@
     <div class="flex-1">
         <label for="category" class="block text-sm font-medium text-[var(--accent-4)] mb-1">Category</label>
         <select id="category" name="category" class="bg-black w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[var(--accent)] overflow-ellipsis">
-            <option value="0" selected disabled>No categories added</option>
+            @if (!empty($user_categories) && count($user_categories) > 0)
+                <option value="0" selected>Unspecified</option>
+                @foreach ($user_categories as $item)
+                    <option value="{{ preg_replace("/[^A-Za-z0-9]/", "", str_replace(' ', '_', strtolower($item->name))) }}">
+                        {{ $item->name }}
+                    </option>
+                @endforeach
+            @else 
+                <option value="0" selected disabled>No categories added</option>
+            @endif
         </select>
         @error('category')
                 <div class="text-[red] text-sm rounded p-2">{{$message}}</div>

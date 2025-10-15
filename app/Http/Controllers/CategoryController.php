@@ -84,6 +84,9 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
+        // echo $id;
+        // echo "<br>";
+        // return Category::find($id);
         $data = [
             'title' => 'Categories',
             'flag' => 'edit',
@@ -105,7 +108,20 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        date_default_timezone_set('Etc/GMT-4');
+
+        // get form data & validate
+        $data = $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+        $data['user_id'] = 1; // CHANGE THIS 
+
+        // update in db
+        Category::where('id', $id)->update($data);
+
+        // redirect
+        return redirect('/categories')->with('success', 'Category updated!');
     }
 
     // ========================================================================
@@ -118,6 +134,14 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Category::destroy($id);
+        return redirect('/categories')->with('success', 'Category deleted!');
+    }
+
+    // ========================================================================
+
+    // return all categories
+    public function read () {
+        return Category::all();
     }
 }

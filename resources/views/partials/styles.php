@@ -57,4 +57,7 @@
         color: #93c5fd; /* light blue accent */
     }
 
+
+    @keyframes blink{0%,49%{opacity:0}50%,100%{opacity:1}}
+
 </style>

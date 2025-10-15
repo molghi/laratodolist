@@ -1,3 +1,9 @@
+@php
+    // fetch all user categories
+    use App\Http\Controllers\CategoryController;
+    $user_categories = CategoryController::read();
+@endphp
+
 {{-- bring in main layout --}}
 @extends('layouts.app')
 
