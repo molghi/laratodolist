@@ -23,7 +23,7 @@
 
 <form action="{{ $mode === 'add' ? route('task.add') : route('task.edit', $data['id']) }}" 
     method="POST" 
-    class="w-full max-w-3xl mx-auto bg-[#222] p-6 pb-8 rounded-lg shadow-sm">
+    class="w-full max-w-3xl mx-auto bg-gray-900 p-6 pb-8 rounded-lg shadow-sm">
 
     @csrf
 

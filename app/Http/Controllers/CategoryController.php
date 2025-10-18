@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
 {
@@ -17,7 +18,8 @@ class CategoryController extends Controller
         $data = [
             'title' => 'Categories',
             'flag' => 'list',
-            'data' => Category::all()
+            // 'data' => Category::all()
+            'data' => Category::where('user_id', Auth::id())->latest()->get()
         ];
 
         return view('categories', $data);
@@ -52,7 +54,7 @@ class CategoryController extends Controller
             'name' => 'required|string|max:255',
         ]);
 
-        $data['user_id'] = 1; // CHANGE THIS 
+        $data['user_id'] = Auth::id();
 
         // push to db
         Category::create($data);
@@ -91,7 +93,8 @@ class CategoryController extends Controller
             'title' => 'Categories',
             'flag' => 'edit',
             'entry' => Category::find($id),
-            'data' => Category::all()
+            // 'data' => Category::all()
+            'data' => Category::where('user_id', Auth::id())->latest()->get()
         ];
 
         return view('categories', $data);
@@ -115,7 +118,7 @@ class CategoryController extends Controller
             'name' => 'required|string|max:255',
         ]);
 
-        $data['user_id'] = 1; // CHANGE THIS 
+        $data['user_id'] = Auth::id();
 
         // update in db
         Category::where('id', $id)->update($data);
@@ -142,6 +145,7 @@ class CategoryController extends Controller
 
     // return all categories
     public function read () {
-        return Category::all();
+        // return Category::all();
+        return Category::where('user_id', Auth::id())->latest()->get();
     }
 }

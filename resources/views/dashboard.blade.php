@@ -10,9 +10,32 @@
                 return 'Today';
             } else {
                 $word = $diff_days == 1 || $diff_days == -1 ? ' day' : ' days';
-                return $diff_days . $word;
+                return abs($diff_days) . $word;
             }
         }
+    }
+
+    // filter user tasks & categories data
+    // $user_categories
+    $tasks_done = 0;
+    $tasks_undone = 0;
+    $tasks_expired = 0;
+    $tasks_names = [];
+    $tasks_details = [];
+    foreach ($user_tasks as $task) {
+        $now = time();
+        $task_expiration = strtotime($task['due_date']);
+        if ($task['status'] === 'completed') { $tasks_done += 1; }
+        elseif ($task['status'] !== 'completed') { $tasks_undone += 1; }
+        array_push($tasks_names, $task['title']);
+        array_push($tasks_details, $task['description']);
+        if ($task_expiration) {
+            if ($task_expiration - $now <= 0) $tasks_expired += 1;
+        }
+    }
+    $categories_names = [];
+    foreach ($user_categories as $cat) {
+        array_push($categories_names, $cat['name']);
     }
 @endphp
 
@@ -29,28 +52,8 @@
 @section('content')
     <div class="max-w-6xl mx-auto my-5">
         <!-- Page Title -->
-        <h1 class="text-4xl my-10 mb-12 tracking-widest text-center capitalize">Your Dashboard, {{$name}}</h1>
+        <h1 class="text-3xl my-10 mb-12 tracking-widest text-center capitalize text-[violet]">Your Dashboard, {{$name}}</h1>
         
-        <!--  -->
-        {{-- @include('partials.auth_forms') --}}
-        <div>
-            {{-- TOP PART --}}
-            <div class="flex items-center gap-10 justify-between max-w-6xl mx-auto relative">
-                <div class="flex items-center gap-3">
-                    <span class="font-bold opacity-60">Name:</span> {{$name}} 
-                </div>
-                <div class="flex items-center gap-3">
-                    <span class="font-bold opacity-60">Email:</span> {{$email}}
-                </div>
-                <div class="flex items-center gap-3">
-                    <span class="font-bold opacity-60">Member since:</span> {{ substr($created_at, 0, 10) . ' (' . get_time_between($created_at) . ')' }}
-                </div>
-                <div class="absolute top-[-80px] right-0 flex flex-col gap-2 text-right text-sm">
-                    <a href="/user/logout" class="opacity-30 hover:opacity-100 hover:underline">Log Out</a>
-                    <button class="opacity-30 hover:opacity-100 hover:underline">Delete Profile</button>
-                </div>
-            </div>
-        </div>
-
+        @include('partials.dashboard_block')
     </div>
 @endsection

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Task;
+use App\Models\Category;
 
 
 class UserController extends Controller
@@ -116,7 +118,15 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        User::destroy($id);
+
+        Auth::logout();  // clears the authenticated user
+
+        request()->session()->invalidate();    // clears session data
+
+        request()->session()->regenerateToken(); // prevents CSRF issues
+
+        return redirect('/auth')->with('success', 'User was deleted.');
     }
 
     // ========================================================================
@@ -138,6 +148,8 @@ class UserController extends Controller
             'name' => Auth::user()->name,
             'email' => Auth::user()->email,
             'created_at' => Auth::user()->created_at,
+            'user_tasks' => Task::where('user_id', Auth::id())->get(),
+            'user_categories' => Category::where('user_id', Auth::id())->get(),
         ];
         return view('dashboard', $data);
     }
@@ -177,5 +189,18 @@ class UserController extends Controller
         return back()->withErrors([
             'email-login' => 'The provided credentials do not match our records.',
         ]);
+    }
+
+    // ========================================================================
+
+    public function change_name (Request $request, $user_id) {
+        $data = $request->validate([
+            // 'username' => 'required|string|min:2|max:25'
+            'username' => ['required', 'string', 'min:2', 'max:25', 'regex:/^[A-Za-z0-9_]+(?: [A-Za-z0-9_]+)*$/']
+        ]);
+
+        User::where('id', $user_id)->update(['name' => $data['username']]);
+
+        return redirect('/user')->with('success', 'Username changed!');
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Task;
+use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
@@ -15,7 +16,7 @@ class TaskController extends Controller
     public function index()
     {
         // fetch all from db
-        $fetched = Task::latest()->get();
+        $fetched = Task::where('user_id', Auth::id())->latest()->get();
         $data = [
             'count' => $fetched ? count($fetched) : 0,
             'title' => 'Tasks',
@@ -62,7 +63,7 @@ class TaskController extends Controller
             'due_date' => 'nullable|date',
         ]);
 
-        $data['user_id'] = 1; // CHANGE THIS 
+        $data['user_id'] = Auth::id();
 
         // push to db
         Task::create($data);
@@ -126,7 +127,7 @@ class TaskController extends Controller
             'due_date' => 'nullable|date',
         ]);
 
-        $data['user_id'] = 1; // CHANGE THIS 
+        $data['user_id'] = Auth::id();
 
         // push to db
         Task::where('id', $id)->update($data); // where clause must come first

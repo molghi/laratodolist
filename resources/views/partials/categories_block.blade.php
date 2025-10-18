@@ -1,15 +1,15 @@
 <div class="flex items-start gap-10 max-w-4xl mx-auto mt-10">
 
   <!-- Left Column: Your Categories -->
-  <div class="flex-1 bg-gray-800 text-gray-100 p-6 rounded-lg border border-gray-700">
-    <h2 class="text-2xl font-semibold mb-4">Your Categories</h2>
+  <div class="flex-1 bg-gray-900 text-gray-100 p-6 rounded-lg border border-gray-700">
+    <h2 class="text-2xl font-semibold mb-4">Your Categories ({{count($data)}})</h2>
 
     {{-- List categories --}}
     <div class="categories flex flex-col gap-4 max-h-[61vh] overflow-y-scroll">
         @if (count($data) > 0)
             @foreach($data as $cat)
                 <!-- Category Item -->
-                <div class="category flex items-center justify-between bg-gray-700 p-3 rounded" data-category-id="{{ $cat->id }}">
+                <div class="category flex items-center justify-between bg-gray-800 hover:bg-gray-700 p-3 rounded" data-category-id="{{ $cat->id }}">
                     <!-- Category Name -->
                     <span>{{ $cat->name }}</span>
 
@@ -33,7 +33,7 @@
 
 
   <!-- Right Column: Add New / Edit One -->
-  <div class="flex-1 bg-gray-800 text-gray-100 p-6 rounded-lg border border-gray-700">
+  <div class="flex-1 bg-gray-900 text-gray-100 p-6 rounded-lg border border-gray-700">
     <h2 class="text-2xl font-semibold mb-4">
         {{ $flag === 'edit' ? 'Edit Existing Category' : 'Add New Category' }}
     </h2>
