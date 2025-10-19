@@ -63,8 +63,8 @@
             @endforeach
         </select>
         @error('status')
-                <div class="text-[red] text-sm rounded p-2">{{$message}}</div>
-            @enderror
+            <div class="text-[red] text-sm rounded p-2">{{$message}}</div>
+        @enderror
     </div>
 
     {{-- CATEGORY --}}
@@ -74,7 +74,9 @@
             @if (!empty($user_categories) && count($user_categories) > 0)
                 <option value="0" selected>Unspecified</option>
                 @foreach ($user_categories as $item)
-                    <option value="{{ preg_replace("/[^A-Za-z0-9]/", "", str_replace(' ', '_', strtolower($item->name))) }}">
+                    <option value="{{ preg_replace("/[^A-Za-z0-9]/", "", str_replace(' ', '_', strtolower($item->name))) }}"
+                        {{ $mode === 'edit' && $data['category'] === strtolower($item->name) ? 'selected' : '' }}
+                    >
                         {{ $item->name }}
                     </option>
                 @endforeach
@@ -83,8 +85,8 @@
             @endif
         </select>
         @error('category')
-                <div class="text-[red] text-sm rounded p-2">{{$message}}</div>
-            @enderror
+            <div class="text-[red] text-sm rounded p-2">{{$message}}</div>
+        @enderror
     </div>
   </div>
 

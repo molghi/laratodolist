@@ -43,6 +43,9 @@ Route::get('/form/edit/{id}', [TaskController::class, 'edit'])->middleware('auth
 
 
 
+// Search tasks
+Route::get('/tasks/search', [TaskController::class, 'search'])->middleware('auth')->name('task.search');
+
 // Show all tasks
 Route::get('/tasks', [TaskController::class, 'index'])->middleware('auth');
 

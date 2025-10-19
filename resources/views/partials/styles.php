@@ -60,4 +60,15 @@
 
     @keyframes blink{0%,49%{opacity:0}50%,100%{opacity:1}}
 
+    .my-pagination a, .my-pagination span {
+        background-color: #000;
+        color: var(--accent);
+        border-color: var(--accent);
+    }
+
+    .my-pagination a:hover {
+        color: var(--accent);
+        background-color: #222;
+    }
+
 </style>
