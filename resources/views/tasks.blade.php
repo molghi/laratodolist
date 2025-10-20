@@ -32,7 +32,7 @@
 
 
 {{-- pass title --}}
-@section('title', 'Your Tasks | ToDo-List')
+@section('title', __('ui.page_tasks'))
 
 
 {{-- pass main page content --}}
@@ -40,7 +40,7 @@
     <div class="max-w-6xl mx-auto my-5">
         
         <!-- Page Title -->
-        <h1 class="text-4xl my-10 tracking-widest text-center capitalize">Your Tasks ({{ $count }})</h1>
+        <h1 class="text-4xl my-10 tracking-widest text-center capitalize">{{ __('ui.tasks_big_title') }} ({{ $count }})</h1>
 
 
         {{-- success msg (if any) --}}
@@ -76,7 +76,7 @@
                 @endforeach
             </div>
         @else
-            <div class="text-center my-5 italic">No tasks so far...</div>
+            <div class="text-center my-5 italic">{{ __('ui.tasks_no_tasks') }}</div>
         @endif
 
 

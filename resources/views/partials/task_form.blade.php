@@ -33,7 +33,7 @@
 
     {{-- TITLE --}}
   <div class="mb-4">
-    <label for="title" class="block text-sm font-medium text-[var(--accent-4)] mb-1">Title</label>
+    <label for="title" class="block text-sm font-medium text-[var(--accent-4)] mb-1">{{__('ui.formpage_title_label')}}</label>
     <input id="title" name="title" type="text" autofocus="true"
            class="bg-black w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
            value="{{ $mode === 'edit' ? $data['title'] : '' }}"
@@ -45,7 +45,7 @@
 
   {{-- DESCRIPTION --}}
   <div class="mb-4">
-    <label for="description" class="block text-sm font-medium text-[var(--accent-4)] mb-1">Description / Details</label>
+    <label for="description" class="block text-sm font-medium text-[var(--accent-4)] mb-1">{{__('ui.formpage_description_label')}}</label>
     <textarea id="description" name="description" 
               class="bg-black min-h-[42px] max-h-[350px] h-[130px] text-[14px] w-full px-3 py-2 border border-gray-300 rounded resize-vertical focus:outline-none focus:ring-2 focus:ring-[var(--accent)]">{{ $mode === 'edit' ? $data['description'] : '' }}</textarea>
         @error('description')
@@ -56,7 +56,7 @@
   <div class="flex gap-8 mb-4">
     {{-- STATUS --}}
     <div class="flex-1">
-        <label for="status" class="block text-sm font-medium text-[var(--accent-4)] mb-1">Status</label>
+        <label for="status" class="block text-sm font-medium text-[var(--accent-4)] mb-1">{{__('ui.formpage_status_label')}}</label>
         <select id="status" name="status" class="bg-black w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[var(--accent)] overflow-ellipsis">
             @foreach ($status_options as $k => $v)
                 <option value="{{ $k }}" {{ $mode === 'edit' && $data['status'] === $k ? 'selected' : '' }}>{{ $v }}</option>
@@ -69,10 +69,10 @@
 
     {{-- CATEGORY --}}
     <div class="flex-1">
-        <label for="category" class="block text-sm font-medium text-[var(--accent-4)] mb-1">Category</label>
+        <label for="category" class="block text-sm font-medium text-[var(--accent-4)] mb-1">{{__('ui.formpage_category_label')}}</label>
         <select id="category" name="category" class="bg-black w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[var(--accent)] overflow-ellipsis">
             @if (!empty($user_categories) && count($user_categories) > 0)
-                <option value="0" selected>Unspecified</option>
+                <option value="0" selected>{{__("ui.formpage_category_unspecified")}}</option>
                 @foreach ($user_categories as $item)
                     <option value="{{ preg_replace("/[^A-Za-z0-9]/", "", str_replace(' ', '_', strtolower($item->name))) }}"
                         {{ $mode === 'edit' && $data['category'] === strtolower($item->name) ? 'selected' : '' }}
@@ -81,7 +81,7 @@
                     </option>
                 @endforeach
             @else 
-                <option value="0" selected disabled>No categories added</option>
+                <option value="0" selected disabled>{{__('ui.formpage_category_none_added')}}</option>
             @endif
         </select>
         @error('category')
@@ -93,7 +93,7 @@
   <div class="flex gap-8 mb-6">
     {{-- PRIORITY --}}
     <div class="flex-1">
-        <label for="priority" class="block text-sm font-medium text-[var(--accent-4)] mb-1">Priority</label>
+        <label for="priority" class="block text-sm font-medium text-[var(--accent-4)] mb-1">{{__('ui.formpage_priority_label')}}</label>
         <select id="priority" name="priority" class="bg-black h-[44px] w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[var(--accent)]">
             @foreach ($priority_options as $k => $v)
                 <option value="{{$k}}" {{ $mode === 'edit' && $k === $data['priority'] ? 'selected' : '' }}>{{$v}}</option>
@@ -106,7 +106,7 @@
 
     {{-- DUE DATE --}}
     <div class="flex-1">
-        <label for="due_date" class="block text-sm font-medium text-[var(--accent-4)] mb-1">Due Date</label>
+        <label for="due_date" class="block text-sm font-medium text-[var(--accent-4)] mb-1">{{__('ui.formpage_duedate_label')}}</label>
         <input id="due_date" name="due_date" type="datetime-local" 
             class="bg-black w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
             value="{{ $mode === 'edit' ? $data['due_date'] : '' }}"
@@ -120,7 +120,7 @@
   {{-- ACTION BTN --}}
   <div class="text-right">
     <button type="submit" class="px-4 py-2 bg-[var(--accent-2)] text-black rounded hover:bg-[var(--accent-4)] transition">
-        {{ $mode === 'edit' ? 'Update' : 'Create' }}
+        {{ $mode === 'edit' ? __('ui.formpage_btn_edit') : __('ui.formpage_btn_add') }}
     </button>
   </div>
 

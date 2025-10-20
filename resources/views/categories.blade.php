@@ -3,14 +3,14 @@
 
 
 {{-- pass title --}}
-@section('title', "Category Manager | ToDo-List")
+@section('title', __('ui.page_categories'))
 
 
 {{-- pass main page content --}}
 @section('content')
     <div class="max-w-6xl mx-auto my-5">
         <!-- Page Title -->
-        <h1 class="text-4xl my-10 tracking-widest text-center capitalize">Categorize tasks for better management</h1>
+        <h1 class="text-4xl my-10 tracking-widest text-center capitalize">{{ __('ui.categories_big_title') }}</h1>
         
         <!-- Main Content -->
         @include('partials.categories_block')

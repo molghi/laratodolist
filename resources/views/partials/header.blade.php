@@ -6,23 +6,23 @@
     <div class="max-w-6xl mx-auto flex items-center justify-between">
 
         {{-- LOGO --}}
-        <h1 class="text-2xl tracking-widest">TODO-LIST</h1>
+        <h1 class="text-2xl tracking-widest">{{__('ui.logotext')}}</h1>
 
         {{-- ACTION BTNS or msg --}}
         @if ($user_id)
         <div class="flex gap-6">
             <a href="/form/add" 
-                class="px-4 inline-block h-[36px] py-1.5 border rounded border-[var(--accent-2)] hover:bg-[var(--accent-3)] hover:text-black transition {{ !empty($title) && $title === 'Add Task' ? 'bg-[var(--accent-2)] text-black' : 'text-[var(--accent)]' }}">Add Task</a>
+                class="px-4 inline-block h-[36px] py-1.5 border rounded border-[var(--accent-2)] hover:bg-[var(--accent-3)] hover:text-black transition {{ !empty($title) && $title === 'Add Task' ? 'bg-[var(--accent-2)] text-black' : 'text-[var(--accent)]' }}">{{__('ui.header_btn_add_task')}}</a>
             <a href="/tasks" 
-                class="px-4 inline-block h-[36px] py-1.5 border rounded border-[var(--accent-2)] hover:bg-[var(--accent-3)] hover:text-black transition {{ !empty($title) && $title === 'Tasks' ? 'bg-[var(--accent-2)] text-black' : 'text-[var(--accent)]' }}">Tasks</a>
+                class="px-4 inline-block h-[36px] py-1.5 border rounded border-[var(--accent-2)] hover:bg-[var(--accent-3)] hover:text-black transition {{ !empty($title) && $title === 'Tasks' ? 'bg-[var(--accent-2)] text-black' : 'text-[var(--accent)]' }}">{{__('ui.header_btn_tasks')}}</a>
             <a href="/categories" 
-                class="px-4 inline-block h-[36px] py-1.5 border rounded border-[var(--accent-2)] hover:bg-[var(--accent-3)] hover:text-black transition {{ !empty($title) && $title === 'Categories' ? 'bg-[var(--accent-2)] text-black' : 'text-[var(--accent)]' }}">Categories</a>
+                class="px-4 inline-block h-[36px] py-1.5 border rounded border-[var(--accent-2)] hover:bg-[var(--accent-3)] hover:text-black transition {{ !empty($title) && $title === 'Categories' ? 'bg-[var(--accent-2)] text-black' : 'text-[var(--accent)]' }}">{{__('ui.header_btn_categories')}}</a>
             <a href="/user" 
-                class="px-4 inline-block h-[36px] py-1.5 border rounded border-[var(--accent-2)] hover:bg-[var(--accent-3)] hover:text-black transition {{ !empty($title) && $title === 'Profile' ? 'bg-[var(--accent-2)] text-black' : 'text-[var(--accent)]' }}">Profile</a>
+                class="px-4 inline-block h-[36px] py-1.5 border rounded border-[var(--accent-2)] hover:bg-[var(--accent-3)] hover:text-black transition {{ !empty($title) && $title === 'Profile' ? 'bg-[var(--accent-2)] text-black' : 'text-[var(--accent)]' }}">{{__('ui.header_btn_profile')}}</a>
         </div>
         @else 
             <a href="/auth" 
-                class="px-4 inline-block h-[36px] py-1.5 border rounded border-[var(--accent-2)] hover:bg-[var(--accent-3)] hover:text-black transition {{ !empty($title) && $title === 'Auth' ? 'bg-[var(--accent-2)] text-black' : 'text-[var(--accent)]' }}">Log In / Sign Up</a>
+                class="px-4 inline-block h-[36px] py-1.5 border rounded border-[var(--accent-2)] hover:bg-[var(--accent-3)] hover:text-black transition {{ !empty($title) && $title === 'Auth' ? 'bg-[var(--accent-2)] text-black' : 'text-[var(--accent)]' }}">{{__('ui.header_btn_auth')}}</a>
         @endif
 
     </div>

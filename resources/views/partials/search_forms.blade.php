@@ -2,21 +2,21 @@
 
     {{-- search form --}}
     <form action="{{ route('task.search') }}" method="GET" class="flex items-center gap-4">
-        <input name="term" type="text" placeholder="Search by keyword..." autocomplete="off" 
+        <input name="term" type="text" placeholder="{{__('ui.tasks_search_form_placeholder')}}" autocomplete="off" 
             value="{{ !empty($term) ? $term : '' }}"
             class="bg-black flex-1 border border-gray-700 rounded-lg px-4 py-2">
             @if (!empty($term))
-                <a href="/tasks" class="border border-gray-700 rounded-lg px-4 py-2 hover:bg-gray-800">Clear</a>
+                <a href="/tasks" class="border border-gray-700 rounded-lg px-4 py-2 hover:bg-gray-800">{{__('ui.tasks_search_form_btn_clear')}}</a>
             @else
-                <button type="submit" class="border border-gray-700 rounded-lg px-4 py-2 hover:bg-gray-800">Search</button>
+                <button type="submit" class="border border-gray-700 rounded-lg px-4 py-2 hover:bg-gray-800">{{__('ui.tasks_search_form_btn')}}</button>
             @endif
     </form>
 
     {{-- Status select --}}
     <div class="flex items-center gap-4">
         <select name="status" class="bg-black border border-gray-700 rounded-lg px-4 py-2">
-        <option value="0" selected disabled>(Status)</option>
-        <option value="all">All</option>
+        <option value="0" selected disabled>{{__('ui.tasks_search_form_status_default')}}</option>
+        <option value="all">{{__('ui.tasks_search_form_status_all')}}</option>
         @foreach ($status_options as $k => $v)
             <option value="{{$k}}" 
                 {{ !empty($term_clean) && $term_clean === $k ? 'selected' : '' }}
@@ -26,7 +26,7 @@
 
     {{-- Priority select --}}
     <select name="priority" class="bg-black border border-gray-700 rounded-lg px-4 py-2">
-        <option value="0" selected disabled>(Priority)</option>
+        <option value="0" selected disabled>{{__('ui.tasks_search_form_priority_default')}}</option>
         @foreach ($priority_options as $k => $v)
             <option value="{{$k}}"
                 {{ !empty($term_clean) && $term_clean === $k ? 'selected' : '' }}
@@ -36,7 +36,7 @@
 
     {{-- Sort select --}}
     <select name="sort" class="bg-black border border-gray-700 rounded-lg px-4 py-2">
-        <option value="0" selected disabled>(Sort)</option>
+        <option value="0" selected disabled>{{__('ui.tasks_search_form_sort_default')}}</option>
         @foreach ($sort_options as $k => $v)
             <option value="{{$k}}"
                 {{ !empty($term_clean) && $term_clean === $k ? 'selected' : '' }}

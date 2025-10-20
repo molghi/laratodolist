@@ -7,9 +7,9 @@
             $diff_raw = $second_date - $first_date;
             $diff_days = floor($diff_raw / 60 / 60 / 24);
             if ((int) $diff_days === 0) {
-                return 'Today';
+                return __('ui.profile_today');
             } else {
-                $word = $diff_days == 1 || $diff_days == -1 ? ' day' : ' days';
+                $word = $diff_days == 1 || $diff_days == -1 ? " " . __('ui.profile_day') : ' ' . __('ui.profile_days');
                 return abs($diff_days) . $word;
             }
         }
@@ -45,14 +45,14 @@
 
 
 {{-- pass title --}}
-@section('title', 'Your Dashboard | ToDo-List')
+@section('title', __('ui.page_dashboard'))
 
 
 {{-- pass main page content --}}
 @section('content')
     <div class="max-w-6xl mx-auto my-5">
         <!-- Page Title -->
-        <h1 class="text-3xl my-10 mb-12 tracking-widest text-center capitalize text-[violet]">Your Dashboard, {{$name}}</h1>
+        <h1 class="text-3xl my-10 mb-12 tracking-widest text-center capitalize text-[violet]">{{ __('ui.profile_big_title') }}, {{$name}}</h1>
         
         @include('partials.dashboard_block')
     </div>

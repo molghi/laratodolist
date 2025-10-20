@@ -64,23 +64,23 @@
   <dl class="flex justify-between gap-x-6 gap-y-2 text-xs text-gray-500">
     {{-- CREATED --}}
     <div title="Created at">
-      <dt class="uppercase tracking-wider font-mono">Created</dt>
+      <dt class="uppercase tracking-wider font-mono">{{__('ui.tasks_created_text')}}</dt>
       <dd class="mt-1 font-mono">{{ substr($entry->created_at, 0, -3) }}</dd>
     </div>
     {{-- UPDATED --}}
     <div title="Updated at">
-      <dt class="uppercase tracking-wider font-mono">Updated</dt>
+      <dt class="uppercase tracking-wider font-mono">{{__('ui.tasks_updated_text')}}</dt>
       <dd class="mt-1 font-mono">{{ substr($entry->updated_at, 0, -3) }}</dd>
     </div>
     {{-- DUE DATE --}}
     <div title="Due date">
-      <dt class="uppercase tracking-wider font-mono">Due Date</dt>
+      <dt class="uppercase tracking-wider font-mono">{{__('ui.tasks_duedate_text')}}</dt>
       <dd class="mt-1 font-mono">{{ !$entry->due_date ? 'Unspecified' : substr($entry->due_date, 0, -3) . ' (' . get_time_between($entry->due_date) . ')' }}</dd>
     </div>
 
     <div class="flex justify-end gap-3">
       {{-- EDIT BTN --}}
-      <a href='/form/edit/{{$entry->id}}' class="px-3 py-1.5 border border-[var(--accent-4)] text-[var(--accent)] rounded hover:bg-[var(--accent-4)]/10 transition text-sm font-mono opacity-40 hover:opacity-100">Edit</a>
+      <a href='/form/edit/{{$entry->id}}' class="px-3 py-1.5 border border-[var(--accent-4)] text-[var(--accent)] rounded hover:bg-[var(--accent-4)]/10 transition text-sm font-mono opacity-40 hover:opacity-100">{{__('ui.edit_btn')}}</a>
   
       {{-- DELETE BTN --}}
       <form action="{{ route('task.delete', $entry->id) }}" method="POST">
@@ -89,7 +89,7 @@
         <button type='submit'   
             onclick="return confirm('Are you sure you want to delete this task?\nThis action cannot be undone.')" 
             class="px-3 py-1.5 h-[36px] bg-red-600 text-white rounded hover:bg-red-700 transition text-sm font-mono opacity-40 hover:opacity-100">
-            Delete
+            {{__('ui.delete_btn')}}
         </button>
       </form>
     </div>
