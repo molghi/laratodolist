@@ -26,5 +26,13 @@
         
         <!-- Add/Edit Task Form -->
         @include('partials.task_form')
-    </div>
+        </div>
+        
+    {{-- adding a Rich Text Editor to a textarea --}}
+    <script src="https://cdn.ckeditor.com/ckeditor5/41.2.1/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#description'))
+            .catch(error => console.error(error));
+    </script>
 @endsection

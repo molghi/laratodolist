@@ -71,4 +71,73 @@
         background-color: #222;
     }
 
+    .ck, .description {
+        font-family: Menlo, Consolas, 'Courier New', Courier, monospace !important;
+    }
+
+    .description h1 { font-size: 2em; font-weight: bold; }
+    .description h2 { font-size: 1.75em; font-weight: bold; }
+    .description ul {
+        list-style-type: disc;
+        padding-left: 3em;
+    }
+    .description ol {
+        list-style-type: decimal;
+        padding-left: 3em;
+    }
+    .description li {
+        margin-bottom: 0.25em;
+        color: #eee; /* ensure visible on dark background */
+    }
+
+    .ck.ck-editor__main > .ck-editor__editable {
+    background-color: #111 !important;
+    color: #eee !important;
+    }
+    .ck.ck-toolbar {
+    background-color: #222 !important;
+    border-color: #333 !important;
+    }
+    .ck.ck-button,
+    .ck.ck-dropdown__button {
+    color: #ccc !important;
+    }
+
+    .ck-editor__editable h1 {
+        font-size: 36px !important;
+    }
+    .ck-editor__editable h2 {
+        font-size: 28px !important;
+    }
+    .ck-editor__editable h3 {
+        font-size: 22px !important;
+    }
+    .ck-editor__editable h1,
+    .ck-editor__editable h2,
+    .ck-editor__editable h3,
+    .ck-editor__editable h4,
+    .ck-editor__editable h5,
+    .ck-editor__editable h6 {
+        color: #eee !important; /* make headings visible */
+    }
+
+    .ck-editor__editable span {
+        display: inline-block !important;
+    }
+
+    .ck-editor__editable ul,
+    .ck-editor__editable ol {
+        color: #eee !important; /* text color for list items */
+        list-style-position: inside; /* ensure bullets/numbers appear */
+        margin-left: 1.2em;
+        padding-left: 0; /* reset padding */
+    }
+
+    .ck-editor__editable li {
+        display: list-item;  /* must be list-item */
+        white-space: normal; /* ensure inline numbering */
+        color: #eee;
+    }
+
 </style>
+

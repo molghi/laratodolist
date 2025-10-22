@@ -59,7 +59,9 @@
   </header>
 
   {{-- DESCRIPTION --}}
-  <p class="text-sm leading-relaxed text-gray-300 mb-6 font-mono" title="Description / Details">{{ $entry->description }}</p>
+  <div class="text-sm leading-relaxed text-gray-300 mb-6 font-mono" title="Description / Details">
+    <div class="description">{!! $entry->description !!}</div>
+</div>
 
   <dl class="flex justify-between gap-x-6 gap-y-2 text-xs text-gray-500">
     {{-- CREATED --}}

@@ -20,7 +20,6 @@
 @endphp
 
 
-
 <form action="{{ $mode === 'add' ? route('task.add') : route('task.edit', $data['id']) }}" 
     method="POST" 
     class="w-full max-w-3xl mx-auto bg-gray-900 p-6 pb-8 rounded-lg shadow-sm">
@@ -47,7 +46,7 @@
   <div class="mb-4">
     <label for="description" class="block text-sm font-medium text-[var(--accent-4)] mb-1">{{__('ui.formpage_description_label')}}</label>
     <textarea id="description" name="description" 
-              class="bg-black min-h-[42px] max-h-[350px] h-[130px] text-[14px] w-full px-3 py-2 border border-gray-300 rounded resize-vertical focus:outline-none focus:ring-2 focus:ring-[var(--accent)]">{{ $mode === 'edit' ? $data['description'] : '' }}</textarea>
+              class="bg-black min-h-[42px] h-[130px] text-[14px] w-full px-3 py-2 border border-gray-300 rounded resize-vertical focus:outline-none focus:ring-2 focus:ring-[var(--accent)]">{{ $mode === 'edit' ? $data['description'] : '' }}</textarea>
         @error('description')
             <div class="text-[red] text-sm rounded p-2">{{$message}}</div>
         @enderror
@@ -125,3 +124,4 @@
   </div>
 
 </form>
+
